@@ -12,8 +12,8 @@ provider:
   stage: dev
   region: eu-central-1
   environment:
-    KAFKA_SERVER_URL: 'kafka-quickstart-exercise-alex-application.aivencloud.com:19078'
-    PIXABAY_KEY: '39160010-a77cb41acde3399cd46a7daae'
+    KAFKA_SERVER_URL: 'YOUR KAFKA URL:19078'
+    PIXABAY_KEY: 'YOUR KEY'
     IMAGES_BUCKET: 'images-upload-store'
     REGION_NAME: 'eu-central-1'
 
