@@ -3,6 +3,8 @@ AUG 30,2023
 
 # Aiven Quickstart: Simplify media content scanning and monitoring using Rekognition,S3,Lambda,Kafka,InfluxDB and Grafana 
 
+![alt text](labels.jpg)
+
 *Learn how to setup a serverless Image Scanning Service using AWS Rekognition and stream its output to Kafka on Aiven for additional processing.*
 
 Before diving into the technical stuff let's just clarify a few things.
