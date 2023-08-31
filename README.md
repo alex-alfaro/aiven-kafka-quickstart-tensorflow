@@ -17,7 +17,7 @@ Today's world web apps are rich on media by nature. Users are generating (and up
 
 Leveraging recent advances on machine learning and artificial intelligence is now fairly simple to use technologies that can 'understand' media content. In the past we have been consistently monitoring system log files, now we must also think on monitoring media assets in a similar fashion.
 
-Why would you want to hook Apache Kafka to your monitoring implementation?
+*Why would you want to hook Apache Kafka to your monitoring implementation?*
 
 By connecting a real-time data streaming platform with storage capabilities like Kafka, we can further ingest, aggregate and transform media data and meta-data. This opens endless possibilities to implement the most common uses cases in media monitoring but also remain flexible to adopt (or exchange) new algorithms or requirements in the long term.     
 
@@ -56,7 +56,13 @@ To follow this guide you will need
 
 a. On the Aiven web console head to the Services menu, click on the Create servie button and select Apache Kafka
 
+![alt text](CreateService.png)
+
 b. Select an Aiven plan on the cloud provider of your choice (you can start with any of the Startup plans) and provide an easy to identify service name at the bottom of the page. We will go with 'kafka-quickstart-exercise'. The status flag of the service should display 'Running' once the setup is complete.
+
+![alt text](plan.png)
+
+Note: You can use Aiven's free trial to setup the whole stack on this tutorial
 
 c. Dowload and store these three credentials files from Connectino Information (Overwiew tab)
 
@@ -92,17 +98,33 @@ If everything went fine, you can verify that the scan outputs from Rekognition a
 
 Now you can fetch the messages currently on that topic (To be able to read them select FORMAT:JSON, and clik Fetch Messages on the top)
 
+![alt text](TopicMessages.png)
+
 **Voilá, you just confirmed you are producing Kafka messages!**
 
 ## 4. Connect your Kafka service to a Grafana dashboard (via InfluxDB), to monitor its performance
 
-a. Navigate to the integrations tab of your Kafka service and select the Store Metrics box. Next, on the pop-up window select the "New Service" option. Select your plan and assign a relevant name and Aiven will spin up an instance of InfluxDB (timeseries database) already connected and receiving metrics from your Kafka service with a predefined schema.
+a. Navigate to the integrations tab of your Kafka service and select the "Store Metrics" box. Next, on the pop-up window select the "New Service" option. Select your plan and assign a relevant name and Aiven will spin up an instance of InfluxDB (timeseries database) already connected and receiving metrics from your Kafka service with a predefined schema.
 
-b. Open your new InfluxDB service and under Integrations add a "Monitof Data in Grafana". Once again select the "new service" option and assign it an Aiven plan and a name. Your Grafana instance should be ready and consuming metrics from Influx in no time.
+![alt text](NewInflux.png)
 
-c. To access the dashboard in Grafana, click on the service URI link in the overview section. This will open Grafana Web UI, to enter use the credentials available also in the overview section. Within Grafana navigate to Dashboards -> Browse and select the dashboard pre-configured dashboard.
+b. Open your new InfluxDB service and under Integrations add a "Monitof Data in Grafana". 
 
-Now you are able to monitor (in real-time!) all the System, Kafka and Java metrics from the system. You should see an spike in resources consumption every time you execute the function mentioned in 3.
+![alt text](InfluxIntegrations.png)
+
+Once again select the "new service" option and assign it an Aiven plan and a name. Your Grafana instance should be ready and consuming metrics from Influx in no time.
+
+c. To access the dashboard in Grafana, click on the service URI link in the overview section. 
+
+![alt text](GrafanaInfo.png)
+
+This will open Grafana Web UI, to enter use the credentials available also in the overview section. Within Grafana navigate to Dashboards -> Browse and select the dashboard pre-configured dashboard.
+
+![alt text](dashboard.png)
+
+**Now you are able to monitor (in real-time!) all the System, Kafka and Java metrics from the system!**
+
+You should see an spike in resources consumption every time you execute the function mentioned in 3.
 
 > Note: Observability in distributed systems is extremely important to know how your system is performing in overall as well as to find optimization opportunities or resolve issues.
 
