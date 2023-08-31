@@ -14,6 +14,8 @@ def scanImage(event, context):
         ssl_cafile="aiven-cred/ca.pem",
         ssl_certfile="aiven-cred/service.cert",
         ssl_keyfile="aiven-cred/service.key",
+        value_serializer=lambda v: json.dumps(v).encode("ascii"),
+        key_serializer=lambda v: json.dumps(v).encode("ascii")
     )
     
     bucket = os.environ['IMAGES_BUCKET']
@@ -50,7 +52,7 @@ def scanImage(event, context):
         producer.send(
             topic=TOPIC_NAME,
             key=str(uuid.uuid4()),
-            value=json.dumps(outputs).encode('utf-8')
+            value=json.dumps(outputs)
         )
 
     producer.close()
