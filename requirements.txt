@@ -1,0 +1,6 @@
+-i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn
+
+boto3
+urllib3==1.26.15
+requests
+kafka-python

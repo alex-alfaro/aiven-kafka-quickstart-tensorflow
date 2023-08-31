@@ -1,0 +1,51 @@
+
+service: image-labels-detector
+
+plugins:
+  - serverless-python-requirements
+
+provider:
+  name: aws
+  logs:
+    restApi: true
+  runtime: python3.8
+  stage: dev
+  region: eu-central-1
+  environment:
+    KAFKA_SERVER_URL: 'kafka-quickstart-exercise-alex-application.aivencloud.com:19078'
+    PIXABAY_KEY: '39160010-a77cb41acde3399cd46a7daae'
+    IMAGES_BUCKET: 'images-upload-store'
+    REGION_NAME: 'eu-central-1'
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:*
+          Resource: "arn:aws:s3:::${self:provider.environment.IMAGES_BUCKET}/*"
+        - Effect: "Allow"
+          Action:
+            - "rekognition:*"
+          Resource: "*"
+
+functions:
+  uploadMockImages:
+    handler: handlers/uploadMockImagesHandler.uploadImages
+    timeout: 60
+  scanImageOnUpload:
+    handler: handlers/imageUploadHandler.scanImage
+    events:
+      - s3:
+          bucket: ${self:provider.environment.IMAGES_BUCKET}
+          event: s3:ObjectCreated:*
+          rules:
+            - suffix: .jpg
+
+custom:
+  pythonRequirements:
+    useStaticCache: true
+    useDownloadCache: true
+    cacheLocation: '/home/aalfaro/aiven/exercise-local/env/lib/python3.8/site-packages'
+    staticCacheMaxVersions: 10
+    
