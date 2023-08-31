@@ -5,7 +5,7 @@ AUG 30,2023
 
 *Learn how to setup a serverless Image Scanning Service using AWS Rekognition and stream its output to Kafka on Aiven for additional processing.*
 
-Before diving into the technical stuff let's just review clarify a few things.
+Before diving into the technical stuff let's just clarify a few things.
 
 *What is image content monitoring?*
 
