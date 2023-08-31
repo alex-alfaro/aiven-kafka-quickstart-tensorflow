@@ -42,10 +42,4 @@ functions:
           rules:
             - suffix: .jpg
 
-custom:
-  pythonRequirements:
-    useStaticCache: true
-    useDownloadCache: true
-    cacheLocation: '/home/aalfaro/aiven/exercise-local/env/lib/python3.8/site-packages'
-    staticCacheMaxVersions: 10
     
